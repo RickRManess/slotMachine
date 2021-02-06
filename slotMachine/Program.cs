@@ -30,7 +30,7 @@ namespace slotMachine
                     {
                         if (slotMachine[x, 1] == 2)
                         {
-                           
+                           //add comment
                         };
                     };
             
