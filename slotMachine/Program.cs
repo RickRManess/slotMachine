@@ -14,7 +14,6 @@ namespace slotMachine
 
 
 
-
             //Nested loops to fill/print 2D array for slot machine display
             for (int i = 0; i < 3; i++)
             {
@@ -30,32 +29,29 @@ namespace slotMachine
 
 
 
-            // Check Middle Row for Winning Numbers => if alle numbers are the same
-            for (int x = 0; x < 3; x++)
+            // Check Middle Row for Winning Numbers => if all numbers are the same
+
+            if (slotMachine[1, 0] == slotMachine[1, 1])
             {
-                for (int y = 0; y < 3; y++)
+                if (slotMachine[1, 1] == slotMachine[1, 2])
                 {
-                    if (slotMachine[x, 1] == 2)  
-                    {
-                        //add comment
-                    };
-                };
+                    Console.WriteLine("You Win!!");
+                }
+                else
+                {
+                    Console.WriteLine("You Lose =(");
+                }
+
             }
-
-
-
-
-
-
-
-
-
-
-
-
+            else
+            {
+                Console.WriteLine("You Lose");
+            }
         }
     }
 }
+
+
 
 
 
