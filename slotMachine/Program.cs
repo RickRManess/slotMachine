@@ -26,26 +26,32 @@ namespace slotMachine
             }
 
 
-            // if-else loops to check if all numbers in middle row are the same
-            if (slotMachine[1, 0] == slotMachine[1, 1])
+            // Function to check for winning Grid 
+            static bool IsWinnigGrid(int[,] slotMachine)
             {
-                if (slotMachine[1, 1] == slotMachine[1, 2])
+                if (slotMachine[1, 0] == slotMachine[1, 1])
                 {
-                    Console.WriteLine("You Win!!");
+                    if (slotMachine[1, 1] == slotMachine[1, 2])
+                    {
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
                 }
                 else
                 {
-                    Console.WriteLine("You Lose =(");
+                    return false;
                 }
 
-            }
-            else
-            {
-                Console.WriteLine("You Lose =(");
-            }
+               
+               
 
 
-              
+            // Function to initialize game 
             static void SpinSlotMachine()
             {
                 int[,] slotMachine = new int[3, 3];
@@ -67,13 +73,11 @@ namespace slotMachine
 
             static bool IsWinnigGrid(int[,] slotMachine)
             {
-                bool isWin;
-
                 if (slotMachine[1, 0] == slotMachine[1, 1])
                 {
                     if (slotMachine[1, 1] == slotMachine[1, 2])
                     {
-                        return  true;
+                        return true;
 
                     }
                     else
@@ -86,6 +90,7 @@ namespace slotMachine
                 {
                     return false;
                 }
+
 
 
 
