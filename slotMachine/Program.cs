@@ -9,10 +9,9 @@ namespace slotMachine
             var rand = new Random();
 
 
+
             //2D array for slot machine display
             int[,] slotMachine = new int[3, 3];
-
-
 
             //Nested loops to fill/print 2D array for slot machine display
             for (int i = 0; i < 3; i++)
@@ -27,10 +26,7 @@ namespace slotMachine
             }
 
 
-
-
-            // Check Middle Row for Winning Numbers => if all numbers are the same
-
+            // if-else loops to check if all numbers in middle row are the same
             if (slotMachine[1, 0] == slotMachine[1, 1])
             {
                 if (slotMachine[1, 1] == slotMachine[1, 2])
@@ -45,11 +41,61 @@ namespace slotMachine
             }
             else
             {
-                Console.WriteLine("You Lose");
+                Console.WriteLine("You Lose =(");
             }
+
+
+              
+            static void SpinSlotMachine()
+            {
+                int[,] slotMachine = new int[3, 3];
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        slotMachine[i, j] = rand.Next(3);
+                        Console.Write(slotMachine[i, j] + " ");
+                    }
+
+                    Console.WriteLine();
+                }
+            }
+
+
+
+
+
+            static bool IsWinnigGrid(int[,] slotMachine)
+            {
+                bool isWin;
+
+                if (slotMachine[1, 0] == slotMachine[1, 1])
+                {
+                    if (slotMachine[1, 1] == slotMachine[1, 2])
+                    {
+                        return  true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+
+
+
+            }
+
         }
     }
 }
+
 
 
 
