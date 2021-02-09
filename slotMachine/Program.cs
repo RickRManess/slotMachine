@@ -16,7 +16,6 @@ namespace slotMachine
             Console.WriteLine("Bank = " + coins);
             Console.WriteLine();
 
-
             //Nested loops to fill/print 2D array for slot machine display
             for (int i = 0; i < 3; i++)
             {
@@ -54,13 +53,12 @@ namespace slotMachine
                 return false;
             }
 
-
-
         }   // Function to initialize game 
         static void spinSlotMachine()
         {
             while (Console.ReadKey().Key != ConsoleKey.Enter) { }
             Console.Clear();
+            displayCoinBank();
             var rand = new Random();
             int[,] slotMachine = new int[3, 3];
             for (int i = 0; i < 3; i++)
@@ -83,6 +81,13 @@ namespace slotMachine
                 spinSlotMachine();
             }
 
+        }
+        static void displayCoinBank()
+        {
+            int coins = 20;
+            Console.WriteLine("Press Enter to Spin Again");
+            Console.WriteLine("Bank = " + coins);
+            Console.WriteLine();
         }
     }
 }
