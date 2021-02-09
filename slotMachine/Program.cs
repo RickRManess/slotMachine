@@ -5,6 +5,9 @@ namespace slotMachine
     class Program
     {
         static void Main(string[] args)
+        
+        
+
         {
             var rand = new Random();
 
@@ -25,49 +28,56 @@ namespace slotMachine
                 Console.WriteLine();
             }
 
-           
-
-
             // Function to check for winning Grid 
             static bool IsWinnigGrid(int[,] slotMachine)
             {
-                
-
-                if (slotMachine[1, 0] == slotMachine[1, 1])
+                if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[1, 2])
                 {
-                    if (slotMachine[1, 1] == slotMachine[1, 2])
-                    {
-                        return true;
-
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
+                    return true;
                 }
                 else
                 {
                     return false;
                 }
-                
-                
+
             }
 
-          if(IsWinnigGrid(slotMachine))
+            if (IsWinnigGrid(slotMachine))
             {
                 Console.WriteLine("You Win =)");
+                
             }
-
-          else
+            else
             {
                 Console.WriteLine("You Lose =(");
+                
+                
             }
+            Console.WriteLine();
 
 
+            // Function to initialize game 
+            static void spinSlotMachine()
+            {
+                var rand = new Random();
 
+                int[,] slotMachine = new int[3, 3];
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        slotMachine[i, j] = rand.Next(3);
+                        Console.Write(slotMachine[i, j] + " ");
+                    }
 
+                    
+                    Console.WriteLine();
 
+                }
+
+                
+
+            }
         }
     }
 }
