@@ -56,7 +56,7 @@ namespace slotMachine
         }   // Function to initialize game 
         static void spinSlotMachine()
         {
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { } // not sure if this is right and it makes the game go on forever
             Console.Clear();
             displayCoinBank();
             var rand = new Random();
@@ -82,13 +82,17 @@ namespace slotMachine
             }
 
         }
+        // Function for Coin Bank Display 
         static void displayCoinBank()
         {
             int coins = 20;
             Console.WriteLine("Press Enter to Spin Again");
             Console.WriteLine("Bank = " + coins);
             Console.WriteLine();
+
         }
+
+
     }
 }
 
