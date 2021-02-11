@@ -7,8 +7,7 @@ namespace slotMachine
         static void Main(string[] args)
         {
 
-            var rand = new Random();
-            int[,] slotMachine = new int[3, 3]; //2D array for slot machine display
+            
 
             //Coins Display 
             int coins = 20;
@@ -18,12 +17,12 @@ namespace slotMachine
 
             //Function to spin slot machine and check for winning grid
             spinSlotMachine();
-
         }
         // Function to genereate and display grid, check for winning grid, and display win/lose message 
         static void spinSlotMachine()
         {
-            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
+            while (Console.ReadKey().Key != ConsoleKey.Enter)
+            { }
             Console.Clear();
             displayCoinBank();
             var rand = new Random();
@@ -59,6 +58,7 @@ namespace slotMachine
                 Console.WriteLine("You Lose =(");
                 spinSlotMachine();
             }
+
             // Function for Coin Bank Display 
             static void displayCoinBank()
             {
