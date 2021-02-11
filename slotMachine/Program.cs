@@ -7,8 +7,6 @@ namespace slotMachine
         static void Main(string[] args)
         {
 
-            
-
             //Coins Display 
             int coins = 20;
             Console.WriteLine("Press Enter to Spin ");
@@ -38,10 +36,10 @@ namespace slotMachine
             }
             static bool IsWinnigGrid(int[,] slotMachine)
             {
-
                 if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[1, 2])
                 {
                     return true;
+
                 }
                 else
                 {
@@ -52,25 +50,28 @@ namespace slotMachine
             {
                 Console.WriteLine("You Win =)");
                 spinSlotMachine();
+
             }
             else
             {
                 Console.WriteLine("You Lose =(");
                 spinSlotMachine();
             }
-
-            // Function for Coin Bank Display 
-            static void displayCoinBank()
-            {
-                int coins = 20;
-                Console.WriteLine("Press Enter to Spin Again");
-                Console.WriteLine("Bank = " + coins);
-                Console.WriteLine();
-
-            }
-
-
         }
+        // Function for Coin Bank Display 
+        static void displayCoinBank()
+        {
+            int coins = 20;
+            Console.WriteLine("Press Enter to Spin Again");
+            Console.WriteLine("Bank = " + coins);
+            Console.WriteLine();
+        }
+        
+
+
+
+
+
     }
 }
 
