@@ -61,7 +61,7 @@ namespace slotMachine
         static void displayCoinBank()
         {
             int coins = 20;
-            Console.WriteLine("Press Enter to Spin Again");
+            Console.WriteLine("Press Any Key to Spin Again");
             Console.WriteLine("Bank = " + coins);
             Console.WriteLine();
         }
