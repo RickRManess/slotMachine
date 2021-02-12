@@ -15,7 +15,7 @@ namespace slotMachine
                 Console.WriteLine("Bank = " + coins);
                 Console.WriteLine();
             }
-            //Function to spin slot machine and check for winning grid
+            //Functions to display coin bank; spin slot machine and check for winning grid
             displayCoinBank();
             spinSlotMachine();
 
@@ -43,7 +43,6 @@ namespace slotMachine
                         if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[1, 2])
                         {
                             return true;
-
                         }
                         else
                         {
