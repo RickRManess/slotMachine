@@ -30,6 +30,7 @@ namespace slotMachine
                 //Display win or lose message
                 DisplayWinLoseMessage(isWin);
                 coinBank--;
+               //Function to spin slot machine and clear old grid
                 SpinAgain();
                 //ask user to spin or cash out
             }
@@ -90,6 +91,11 @@ namespace slotMachine
                 Console.WriteLine("You Lose =(");
             }
         }
+       /// <summary>
+       /// Checks the middle row of the grid to see if grid is a winner or loser
+       /// </summary>
+       /// <param name="grid"></param>
+       /// <returns></returns>
         static bool IsWinnigGrid(int[,] grid)
         {
             if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2])
@@ -101,6 +107,9 @@ namespace slotMachine
                 return false;
             }
         }
+        /// <summary>
+        /// Clears the Grid and spins the slot machine 
+        /// </summary>
         static void SpinAgain()
         {
             Console.WriteLine("Press any key to Spin Again");
