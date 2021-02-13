@@ -10,6 +10,7 @@ namespace slotMachine
             int[,] slotMachine = new int[3, 3];
 
             //while coinbank > 0
+
             while (coinBank > 0)
             {
                 // display the current coinbank
@@ -29,8 +30,10 @@ namespace slotMachine
                 //Display win or lose message
                 DisplayWinLoseMessage(isWin);
                 coinBank--;
+                SpinAgain();
+                //ask user to spin or cash out
             }
-            //ask user to spin or cash out
+
             //if the user wants to cash out, end the program
         }
         /// <summary>
@@ -39,7 +42,6 @@ namespace slotMachine
         /// <param name="amount"></param>
         static void DisplayCoinBank(int amount)
         {
-            Console.WriteLine("Press Any Key to Spin ");
             Console.WriteLine("Bank = " + amount);
             Console.WriteLine();
         }
@@ -99,7 +101,14 @@ namespace slotMachine
                 return false;
             }
         }
-
+        static void SpinAgain()
+        {
+            Console.WriteLine("Press any key to Spin Again");
+            if (Console.ReadKey().Key != ConsoleKey.Enter)
+            {
+                Console.Clear();
+            }
+        }
     }
 }
 
