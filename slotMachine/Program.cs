@@ -12,24 +12,25 @@ namespace slotMachine
             //while coinbank > 0
             while (coinBank > 0)
             {
-                while (Console.ReadKey().Key != ConsoleKey.Enter)
+                // display the current coinbank
+                DisplayCoinBank(coinBank);
+                // generate random grid
+                GetRandomGrid(slotMachine);
+                //display the grid
+                DisplayGrid(slotMachine);
+                //check grid for winner
+                IsWinnigGrid(slotMachine);
+                bool isWin = IsWinnigGrid(slotMachine);
+                //if statement to add coins for wins
+                if (isWin)
                 {
-                    Console.Clear();
-                    // display the current coinbank
-                    DisplayCoinBank(coinBank);
-                    // generate random grid
-                    GetRandomGrid(slotMachine);
-                    //display the grid
-                    DisplayGrid(slotMachine);
-                    //check grid for winner
-                    IsWinnigGrid(slotMachine);
-                    bool isWin = IsWinnigGrid(slotMachine);
-                    //Display win or lose message
-                    DisplayWinLoseMessage(isWin);
-                    coinBank--;
+                    coinBank = coinBank + 3;
                 }
+                //Display win or lose message
+                DisplayWinLoseMessage(isWin);
+                coinBank--;
             }
-            //ask user to spin or cash hout
+            //ask user to spin or cash out
             //if the user wants to cash out, end the program
         }
         /// <summary>
@@ -98,9 +99,11 @@ namespace slotMachine
                 return false;
             }
         }
-    }
 
+    }
 }
+
+
 
 
 
