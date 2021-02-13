@@ -6,54 +6,90 @@ namespace slotMachine
     {
         static void Main(string[] args)
         {
-            
+            int coinBank = 20;
+            int[,] slotMachine = new int[3, 3];
+
+            //while coinbank > 0
+            while (coinBank > 0)
+            {
+                while (Console.ReadKey().Key != ConsoleKey.Enter)
+                {
+                    Console.Clear();
+                    // display the current coinbank
+                    DisplayCoinBank(coinBank);
+                    // generate random grid
+                    GetRandomGrid(slotMachine);
+                    //display the grid
+                    DisplayGrid(slotMachine);
+                    //check grid for winner
+                    IsWinnigGrid(slotMachine);
+                    bool isWin = IsWinnigGrid(slotMachine);
+                    //Display win or lose message
+                    DisplayWinLoseMessage(isWin);
+                    coinBank--;
+                }
+            }
+            //ask user to spin or cash hout
+            //if the user wants to cash out, end the program
         }
-        /// <>
-        /// 
-        /// </This function displays the coin bank>
-        static void displayCoinBank()
+        /// <summary>
+        /// Displays the coin bank
+        /// </summary>
+        /// <param name="amount"></param>
+        static void DisplayCoinBank(int amount)
         {
-            int coins = 20;
             Console.WriteLine("Press Any Key to Spin ");
-            Console.WriteLine("Bank = " + coins);
+            Console.WriteLine("Bank = " + amount);
             Console.WriteLine();
         }
-
-        //Functions to display coin bank spin slot machine and check for winning grid
-        //displayCoinBank();
-        //spinSlotMachine();
-
-       
-        static void spinSlotMachine()
+        /// <summary>
+        /// Generates a random grid 
+        /// </summary>
+        static void GetRandomGrid(int[,] slotMachine)
         {
-
-            while (Console.ReadKey().Key != ConsoleKey.Enter)
+            var rand = new Random();
+            for (int i = 0; i < 3; i++)
             {
-                Console.Clear();
-                displayCoinBank();
-                var rand = new Random();
-                int[,] slotMachine = new int[3, 3];
-                for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
                 {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        slotMachine[i, j] = rand.Next(3);
-                        Console.Write(slotMachine[i, j] + " ");
-                    }
-                    Console.WriteLine();
+                    slotMachine[i, j] = rand.Next(3);
                 }
-
             }
-
-
-        }/// <Checks grid for win/loss>
-        /// 
-        /// </checks the middle line of the grid and displays you win/you lose text>
+        }
+        /// <summary>
+        /// Displays the random grid that was generated with GetRandomGrid function
+        /// </summary>
         /// <param name="slotMachine"></param>
-        /// <You win></You lose>
-        static bool IsWinnigGrid(int[,] slotMachine)
+        static void DisplayGrid(int[,] slotMachine)
         {
-            if (slotMachine[1, 0] == slotMachine[1, 1] && slotMachine[1, 1] == slotMachine[1, 2])
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+
+                    Console.Write(slotMachine[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /// <summary>
+        /// Print win or lose message
+        /// </summary>
+        /// <param name="isWin">true => win message false => lose message</param>
+        static void DisplayWinLoseMessage(bool isWin)
+        {
+            if (isWin)
+            {
+                Console.WriteLine("You Win =)");
+            }
+            else
+            {
+                Console.WriteLine("You Lose =(");
+            }
+        }
+        static bool IsWinnigGrid(int[,] grid)
+        {
+            if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2])
             {
                 return true;
             }
@@ -61,21 +97,11 @@ namespace slotMachine
             {
                 return false;
             }
-            if (IsWinnigGrid(slotMachine))
-            {
-                Console.WriteLine("You Win =)");
-
-            }
-            else
-            {
-                Console.WriteLine("You Lose =(");
-
-            }
-
         }
     }
 
 }
+
 
 
 
