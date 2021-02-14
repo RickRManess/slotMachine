@@ -81,8 +81,7 @@ namespace slotMachine
             {
                 for (int j = 0; j < 3; j++)
                 {
-
-                    Console.Write(slotMachine[i, j] + " ");
+                    Console.Write(" " + slotMachine[i, j] + " ");
                 }
                 Console.WriteLine();
             }
