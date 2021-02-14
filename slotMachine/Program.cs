@@ -28,9 +28,9 @@ namespace slotMachine
                 }
                 //Display win or lose message
                 DisplayWinLoseMessage(isWin);
-                
                 //if else statement to spin slot machine and clear old grid
                 Console.WriteLine("Press any key to Spin Again");
+                Console.WriteLine("Press Enter to Cash Out");
                 if (Console.ReadKey().Key != ConsoleKey.Enter)
                 {
                     Console.Clear();
@@ -118,10 +118,6 @@ namespace slotMachine
                 return false;
             }
         }
-        /// <summary>
-        /// Clears the Grid and spins the slot machine 
-        /// </summary>
-
     }
 }
 
