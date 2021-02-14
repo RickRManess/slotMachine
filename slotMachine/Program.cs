@@ -10,7 +10,6 @@ namespace slotMachine
             int[,] slotMachine = new int[3, 3];
 
             //while coinbank > 0
-
             while (coinBank > 0)
             {
                 // display the current coinbank
@@ -29,13 +28,23 @@ namespace slotMachine
                 }
                 //Display win or lose message
                 DisplayWinLoseMessage(isWin);
+                
+                //if else statement to spin slot machine and clear old grid
+                Console.WriteLine("Press any key to Spin Again");
+                if (Console.ReadKey().Key != ConsoleKey.Enter)
+                {
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    break;
+                }
                 coinBank--;
-               //Function to spin slot machine and clear old grid
-                SpinAgain();
-                //ask user to spin or cash out
             }
-
             //if the user wants to cash out, end the program
+            Console.WriteLine("Game Over");
+            Console.WriteLine("You won " + coinBank + " coins");
         }
         /// <summary>
         /// Displays the coin bank
@@ -43,7 +52,9 @@ namespace slotMachine
         /// <param name="amount"></param>
         static void DisplayCoinBank(int amount)
         {
+            Console.WriteLine("**********");
             Console.WriteLine("Bank = " + amount);
+            Console.WriteLine("**********");
             Console.WriteLine();
         }
         /// <summary>
@@ -91,11 +102,11 @@ namespace slotMachine
                 Console.WriteLine("You Lose =(");
             }
         }
-       /// <summary>
-       /// Checks the middle row of the grid to see if grid is a winner or loser
-       /// </summary>
-       /// <param name="grid"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// Checks the middle row of the grid to see if grid is a winner or loser
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
         static bool IsWinnigGrid(int[,] grid)
         {
             if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2])
@@ -110,16 +121,11 @@ namespace slotMachine
         /// <summary>
         /// Clears the Grid and spins the slot machine 
         /// </summary>
-        static void SpinAgain()
-        {
-            Console.WriteLine("Press any key to Spin Again");
-            if (Console.ReadKey().Key != ConsoleKey.Enter)
-            {
-                Console.Clear();
-            }
-        }
+
     }
 }
+
+
 
 
 
