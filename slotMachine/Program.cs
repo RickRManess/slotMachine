@@ -9,25 +9,24 @@ namespace slotMachine
             int coinBank = 20;
             int[,] slotMachine = new int[3, 3];
 
+
             //while coinbank > 0
             while (coinBank > 0)
             {
                 // display the current coinbank
                 DisplayCoinBank(coinBank);
                 // generate random grid
-                GetRandomGrid(slotMachine);
+                slotMachine = GetRandomGrid();
                 //display the grid
                 DisplayGrid(slotMachine);
                 //check grid for winner
-                IsWinnigGrid(slotMachine);
-                bool isWin = IsWinnigGrid(slotMachine);
                 //if statement to add coins for wins
-                if (isWin)
+                if (IsWinnigGrid(slotMachine))
                 {
                     coinBank = coinBank + 3;
                 }
                 //Display win or lose message
-                DisplayWinLoseMessage(isWin);
+                DisplayWinLoseMessage(IsWinnigGrid(slotMachine));
                 //if else statement to spin slot machine and clear old grid
                 Console.WriteLine("Press any key to Spin Again");
                 Console.WriteLine("Press Enter to Cash Out");
@@ -60,16 +59,18 @@ namespace slotMachine
         /// <summary>
         /// Generates a random grid 
         /// </summary>
-        static void GetRandomGrid(int[,] slotMachine)
+        static int[,] GetRandomGrid()
         {
+            int[,] grid = new int[3, 3];
             var rand = new Random();
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    slotMachine[i, j] = rand.Next(3);
+                    grid[i, j] = rand.Next(3);
                 }
             }
+            return grid;
         }
         /// <summary>
         /// Displays the random grid that was generated with GetRandomGrid function
