@@ -53,51 +53,52 @@ namespace slotMachine
                         }
                         coinBank--;
                     }
-                    if (lines == 2)
+                }
+            }
+            if (lines == 2)
+            {
+                Console.Clear();
+                DisplayCoinBank(coinBank);
+                if (Console.ReadKey().Key != ConsoleKey.Enter)
+                {
+                    Console.Clear();
+                    while (coinBank > 0)
                     {
-                        Console.Clear();
+                        // display current coinbank
                         DisplayCoinBank(coinBank);
+                        // generate random grid
+                        slotMachine = GetRandomGrid();
+                        //check grid for winner
+                        //if statement to add coins for wins
+                        if (IsWinnigGrid(slotMachine))
+                        {
+                            coinBank = coinBank + 3;
+                        }
+                        //Display win or lose message
+                        DisplayWinLoseMessage(IsWinnigGrid(slotMachine));
+                        //if else statement to spin slot machine and clear old grid
                         if (Console.ReadKey().Key != ConsoleKey.Enter)
                         {
                             Console.Clear();
-                            while (coinBank>0)
-                            {
-                               // display current coinbank
-                                DisplayCoinBank(coinBank);
-                                // generate random grid
-                                slotMachine = GetRandomGrid();
-                                //check grid for winner
-                                //if statement to add coins for wins
-                                if (IsWinnigGrid(slotMachine))
-                                {
-                                    coinBank = coinBank + 3;
-                                }
-                                //Display win or lose message
-                                DisplayWinLoseMessage(IsWinnigGrid(slotMachine));
-                                //if else statement to spin slot machine and clear old grid
-                                if (Console.ReadKey().Key != ConsoleKey.Enter)
-                                {
-                                    Console.Clear();
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    break;
-                                }
-                                coinBank--;
-
-                            }
                         }
+                        else
+                        {
+                            Console.Clear();
+                            break;
+                        }
+                        coinBank--;
 
                     }
-                    
                 }
 
-                //if the user wants to cash out, end the program
-                Console.WriteLine("Game Over");
-                Console.WriteLine("You won " + coinBank + " coins");
             }
-            /// <summary>
+
+
+
+            //if the user wants to cash out, end the program
+            Console.WriteLine("Game Over");
+            Console.WriteLine("You won " + coinBank + " coins");
+
             /// Displays the coin bank
             /// </summary>
             /// <param name="amount"></param>
