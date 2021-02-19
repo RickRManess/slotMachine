@@ -68,11 +68,13 @@ namespace slotMachine
                         DisplayCoinBank(coinBank);
                         // generate random grid
                         slotMachine = GetRandomGrid();
+                        // display grid
+                        DisplayGrid(slotMachine);
                         //check grid for winner
                         //if statement to add coins for wins
                         if (IsWinnigGrid(slotMachine))
                         {
-                            coinBank = coinBank + 3;
+                            coinBank = coinBank + 5;
                         }
                         //Display win or lose message
                         DisplayWinLoseMessage(IsWinnigGrid(slotMachine));
@@ -86,6 +88,7 @@ namespace slotMachine
                             Console.Clear();
                             break;
                         }
+                        coinBank--;
                         coinBank--;
 
                     }
