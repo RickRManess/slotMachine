@@ -7,140 +7,91 @@ namespace slotMachine
         static void Main(string[] args)
         {
             int coinBank = 20;
+            int spinCost = 0;
+            int winAmount = 0;
             int[,] slotMachine = new int[3, 3];
 
             DisplayCoinBank(coinBank);
             Console.WriteLine("How many lines do you want to play?");
             int lines = Int32.Parse(Console.ReadLine());
 
-            // if loop for player selction of one line
-            if (lines == 1)
+            // Switch case for player line selection
+            switch (lines)
             {
+                case 1:
+                    spinCost = 1;
+                    winAmount = 2;
+                    break;
+                case 2:
+                    spinCost = 2;
+                    winAmount = 3;
+                    break;
+                case 3:
+                    spinCost = 3;
+                    winAmount = 5;
+                    break;
+                default:
+                    Console.WriteLine("Invalid Choice");
+                    break;
+            }
+
+            Console.Clear();
+            DisplayCoinBank(coinBank);
+            //while coinbank > 0
+            while (coinBank > 0)
+            {
+                //if else statement to spin slot machine and clear old grid
+                if (Console.ReadKey().Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
                 Console.Clear();
+                // display the current coinbank
                 DisplayCoinBank(coinBank);
 
-                if (Console.ReadKey().Key != ConsoleKey.Enter)
+                // generate random grid
+                slotMachine = GetRandomGrid();
+                //display the grid
+                DisplayGrid(slotMachine);
+                //check grid for winner
+                //do something different depending on game mode
                 {
-                    Console.Clear();
-                    //while coinbank > 0
-                    while (coinBank > 0)
+                    bool win = IsWinningGameState(slotMachine, lines);
+                    //if statement to add coins for wins
+                    if (IsWinningGrid(slotMachine))
                     {
-                        // display the current coinbank
-                        DisplayCoinBank(coinBank);
-                        // generate random grid
-                        slotMachine = GetRandomGrid();
-                        //display the grid
-                        DisplayGrid(slotMachine);
-                        //check grid for winner
-                        //if statement to add coins for wins
-                        if (IsWinnigGrid(slotMachine))
-                        {
-                            coinBank = coinBank + 3;
-                        }
-                        //Display win or lose message
-                        DisplayWinLoseMessage(IsWinnigGrid(slotMachine));
-                        //if else statement to spin slot machine and clear old grid
-                        if (Console.ReadKey().Key != ConsoleKey.Enter)
-                        {
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            break;
-                        }
-                        coinBank--;
+                        coinBank = coinBank + winAmount;  //use winamount instead of hardcoded values
                     }
-                }
-            }
-            // if loop for player selection of two lines
-            if (lines == 2)
-            {
-                Console.Clear();
-                DisplayCoinBank(coinBank);
-                if (Console.ReadKey().Key != ConsoleKey.Enter)
-                {
-                    Console.Clear();
-                    // while loop for player selection of two lines
-                    while (coinBank > 0)
-                    {
-                        // display current coinbank
-                        DisplayCoinBank(coinBank);
-                        // generate random grid
-                        slotMachine = GetRandomGrid();
-                        // display grid
-                        DisplayGrid(slotMachine);
-                        //check grid for winner
-                        //if statement to add coins for wins
-                        if (IsWinnigGridTwo(slotMachine))
-                        {
-                            coinBank = coinBank + 5;
-                        }
-                        //Display win or lose message
-                        DisplayWinLoseMessage(IsWinnigGridTwo(slotMachine));
-                        //if else statement to spin slot machine and clear old grid
-                        if (Console.ReadKey().Key != ConsoleKey.Enter)
-                        {
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            break;
-                        }
-                        coinBank--;
-                        coinBank--;
-                    }
-                }
-            }
-            // if loop for player selection of 3 lines
-            if (lines == 3)
-            {
-                Console.Clear();
-                DisplayCoinBank(coinBank);
-                if (Console.ReadKey().Key != ConsoleKey.Enter)
-                {
-                    Console.Clear();
-                    // While loop for game functions with player selection of three lines
-                    while (coinBank > 0)
-                    {
-                        // display current coinbank
-                        DisplayCoinBank(coinBank);
-                        // generate random grid
-                        slotMachine = GetRandomGrid();
-                        // display grid
-                        DisplayGrid(slotMachine);
-                        //check grid for winner
-                        //if statement to add coins for wins
-                        if (IsWinnigGridThree(slotMachine))
-                        {
-                            coinBank = coinBank + 10;
-                        }
-                        //Diplay win or lose message
-                        DisplayWinLoseMessage(IsWinnigGridThree(slotMachine));
-                        // if else statement to spin slot machine and clear old grid
-                        if (Console.ReadKey().Key != ConsoleKey.Enter)
-                        {
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            break;
-                        }
-                        coinBank--;
-                        coinBank--;
-                        coinBank--;
-                    }
+                    //Display win or lose message
+                    DisplayWinLoseMessage(IsWinningGrid(slotMachine));
+                    coinBank = coinBank - spinCost;   //subtract spinCost
                 }
             }
             //Display winnings when the user wants to cash out and end the program
             Console.WriteLine("Game Over");
             Console.WriteLine("You won " + coinBank + " coins");
+        }
 
-            /// Displays the coin bank
-            /// </summary>
-        }   /// <param name="amount"></param>
+        private static bool IsWinningGameState(int[,] slotMachine, int lines)
+        {
+            bool win = true;
+            switch (lines)
+            {
+                case 1:
+                    win = IsWinningLine(slotMachine, 1);
+                    break;
+                case 2:
+                    win = IsWinningLine(slotMachine, 1) || IsWinningLine(slotMachine, 2);
+                    break;
+                case 3:
+                    win = IsWinningLine(slotMachine, 0) ||
+                        IsWinningLine(slotMachine, 1) || IsWinningLine(slotMachine, 2);
+                    break;
+            }
+            return win;
+        }
+
+        /// <param name="amount"></param>
         static void DisplayCoinBank(int amount)
         {
             Console.WriteLine("Press any key to Spin, Press Enter to Cash Out ");
@@ -195,41 +146,25 @@ namespace slotMachine
                 Console.WriteLine("You Lose =(");
             }
         }
+        static bool IsWinningLine(int[,] grid, int lineToCheck)
+        {
+            if (grid[lineToCheck, 0] == grid[lineToCheck, 1] && grid[lineToCheck, 1] == grid[lineToCheck, 2])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// Checks the middle row of the grid to see if grid is a winner or loser
         /// </summary>
         /// <param name="grid"></param>
         /// <returns></returns>
-        static bool IsWinnigGrid(int[,] grid)
+        static bool IsWinningGrid(int[,] grid)
         {
             if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        /// <summary>
-        /// Function to check for winning grid on middle and top lines
-        /// </summary>
-        /// <param name="grid"></param>
-        /// <returns>True or false for winning lines 1 or 2</returns>
-        static bool IsWinnigGridTwo(int[,] grid)
-        {
-            if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2] || grid[0, 0] == grid[0, 1] && grid[0, 1] == grid[0, 2])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        static bool IsWinnigGridThree(int[,] grid)
-        {
-            if (grid[1, 0] == grid[1, 1] && grid[1, 1] == grid[1, 2] || grid[0, 0] == grid[0, 1] && grid[0, 1] == grid[0, 2] || grid[2, 0] == grid[2, 1] && grid[2, 1] == grid[2, 2])
             {
                 return true;
             }
