@@ -63,7 +63,7 @@ namespace slotMachine
                         coinBank = coinBank + winAmount;  //use winamount instead of hardcoded values
                     }
                     //Display win or lose message
-                    DisplayWinLoseMessage(IsWinningGrid(slotMachine));
+                    DisplayWinLoseMessage(IsWinningGameState(slotMachine, lines));
                     coinBank = coinBank - spinCost;   //subtract spinCost
                 }
             }
