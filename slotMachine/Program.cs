@@ -40,11 +40,7 @@ namespace slotMachine
             //while coinbank > 0
             while (coinBank > 0)
             {
-                //if else statement to spin slot machine and clear old grid
-                if (Console.ReadKey().Key == ConsoleKey.Enter)
-                {
-                    break;
-                }
+             
                 Console.Clear();
                 // display the current coinbank
                 DisplayCoinBank(coinBank);
@@ -54,7 +50,6 @@ namespace slotMachine
                 //display the grid
                 DisplayGrid(slotMachine);
                 //check grid for winner
-                //do something different depending on game mode
                 {
                     bool win = IsWinningGameState(slotMachine, lines);
                     //if statement to add coins for wins
@@ -65,6 +60,7 @@ namespace slotMachine
                     //Display win or lose message
                     DisplayWinLoseMessage(IsWinningGameState(slotMachine, lines));
                     coinBank = coinBank - spinCost;   //subtract spinCost
+                    Console.ReadKey();
                 }
             }
             //Display winnings when the user wants to cash out and end the program
@@ -74,7 +70,7 @@ namespace slotMachine
 
         private static bool IsWinningGameState(int[,] slotMachine, int lines)
         {
-            bool win = true;
+            bool win = true; 
             switch (lines)
             {
                 case 1:
